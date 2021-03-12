@@ -41,4 +41,9 @@ class Empresa extends Model
     protected $appends = [
 
     ];
+
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'empresa_id');
+    }
 }
