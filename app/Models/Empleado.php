@@ -73,4 +73,9 @@ class Empleado extends Model
     {
         return $this->nombres . ' ' . $this->apellidos;
     }
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
 }
