@@ -18,6 +18,8 @@ class Empleados extends Component
      */
     public $nombres, $apellidos, $empresa_id, $email, $telefono, $empleado_id;
 
+    //protected $listeners = ['empresaChanged' => 'change'];
+
     /**
      * Para Controlar el Modal
      *
@@ -114,7 +116,7 @@ class Empleados extends Component
             'telefono' => 'required',
         ]);
 
-        Empleado::updateOrCreate(['id' => $this->empresa_id], [
+        Empleado::updateOrCreate(['id' => $this->empleado_id], [
             'nombres' => $this->nombres,
             'apellidos' => $this->apellidos,
             'empresa_id' => $this->empresa_id,
@@ -137,11 +139,17 @@ class Empleados extends Component
     public function edit($id)
     {
         $empleado = Empleado::findOrFail($id);
-        $this->emmpleado_id = $id;
+        $this->empleado_id = $id;
         $this->nombres = $empleado->nombres;
         $this->apellidos = $empleado->apellidos;
         $this->empresa_id = $empleado->empresa_id;
         $this->telefono = $empleado->telefono;
+        $this->email = $empleado->email;
         $this->openModal();
+    }
+
+    public function changeEvent($value)
+    {
+        $this->empresa_id = $value;
     }
 }

@@ -23,16 +23,12 @@
                     @error('apellidos') <span class="text-red-500">{{ $message }}</span>@enderror
                 </div>
                 <div class="mb-4">
-                    <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                    <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" wire:click="changeEvent($event.target.value)">
                         @foreach($empresas as $empresa)
-                            @if($empresa_id == $empresa->id)
-                            <option value="{{$empresa->id}}">{{$empresa->nombre}} selected</option>
-                            @else
                             <option value="{{$empresa->id}}">{{$empresa->nombre}}</option>
-                            @endif
                         @endforeach
                     </select>
-                  </div>
+                </div>
                 <div class="mb-4">
                     <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
                     <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Digite su Email" wire:model="email">
