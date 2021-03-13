@@ -40,6 +40,7 @@ class Empresa extends Component
             'empresas' =>Bussiness::where('nombre',  'ILIKE',"%{$this->search}%")
                 ->orWhere('email',  'ILIKE',"%{$this->search}%")
                 ->orWhere('website',  'ILIKE',"%{$this->search}%")
+                ->orderBy('id', 'desc')
                 ->paginate(10)
         ]);
     }

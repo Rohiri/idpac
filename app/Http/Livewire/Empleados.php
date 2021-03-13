@@ -40,6 +40,7 @@ class Empleados extends Component
                     $q->where('nombre',  'ILIKE',"%{$this->search}%");
                 })
                 ->with('empresa')
+                ->orderBy('id', 'desc')
                 ->paginate(10),
             'empresas' => Empresa::all(),
         ]);
