@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Empresa as Bussiness;
+use Faker\Factory;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Empresa as Bussiness;
 
 class Empresa extends Component
 {
@@ -110,9 +111,12 @@ class Empresa extends Component
             'website' => 'required',
         ]);
 
+        $faker = Factory::create();
+
         Bussiness::updateOrCreate(['id' => $this->empresa_id], [
             'nombre' => $this->nombre,
             'email' => $this->email,
+            'logo'  => $faker->imageUrl($width = 128, $height = 128),
             'website' => $this->website,
         ]);
 
